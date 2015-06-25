@@ -14,6 +14,6 @@ nmap -sU -sT -oG nmap.gnmap <ip-диапазон>
 
 python nvg.py /путь/к/файлу/nmap.gnmap /путь/к/файлу/nmap.json
 
-В итоге в папке должны быть следующие файлы: script.py, nmap.gnmap, graph.html, dndTree.js, nmap.json(генерируется скриптом)
+В итоге в папке должны быть следующие файлы: nvg.py, nmap.gnmap, graph.html, dndTree.js, nmap.json(генерируется скриптом)
 
 Запустить graph.html
