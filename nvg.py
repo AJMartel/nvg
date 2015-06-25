@@ -3,22 +3,21 @@ import os, re, sys
 
 __description__ = 'Nmap Visual Graph'
 __author__ = 'Storchak Sergey a.k.a ser-storchak'
-__version__ = '1.4'
+__version__ = '1.4.1'
 __date__ = '25.06.2015'
 
 '''
 Особенности программы:
-- запуск с параметрами;
-- парсит файл nmap.gnmap;
-- не отображает узлы без открытых портов;
-- не отображает порты со статусом "unknown";
+- запуск с параметрами
+- парсит файл nmap.gnmap
+- не отображает узлы без открытых портов
+- не отображает порты со статусом "unknown"
 
 Планируется:
-- выбор графа;
-- параметры по умолчанию;
-- изменение имени выходного файла в dndTree.js;
-- при завершении скрипта выдать ссылку на открытие файла с графом;
-- оптимизация кода
+- выбор графа
+- параметры по умолчанию
+- изменение имени выходного файла в dndTree.js
+- При завершении скрипта выдать ссылку на открытие файла с графом
 '''
 
 def title():
@@ -27,8 +26,8 @@ def title():
 	
 def usage():
 	title()
-	print ("\n Usage: python nvg.py <gnmap file> <output file>\n")
-	print (" Example: python nvg.py nmap.gnmap nmap.json\n")
+	print ("\n Usage: python grep.py <gnmap file> <output file>\n")
+	print (" Example: python grep.py nmap.gnmap nmap.json\n")
 
 if len(sys.argv) <= 2:
 	usage()
@@ -79,9 +78,12 @@ file.close()
 '''
 with open(filepath_result, "r+") as d:
     pattern4 = r"},\s+}, {"
-    zamena = r"}]"
+    pattern5 = r"}]\s+}, {\s+}]"
+    zamena4 = r"}]"
+    zamena5 = r"}]\n\t}]"
     s = d.read()
-    s = re.sub(pattern4, zamena, s)
+    s = re.sub(pattern4, zamena4, s)
+    s = re.sub(pattern5, zamena5, s)
     d.seek(0)
     d.write(s)
     d.truncate()
